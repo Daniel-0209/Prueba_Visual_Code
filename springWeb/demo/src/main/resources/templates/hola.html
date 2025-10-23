@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Hola desde Spring Boot</title>
+</head>
+<body>
+  <h1>Hola desde la ruta /hola!</h1>
+  <p>Este es un ejemplo con un botón que envía un mensaje al servidor.</p>
+
+  <button id="btnMensaje">Enviar mensaje</button>
+
+  <p id="respuesta"></p>
+
+  <script>
+    document.getElementById("btnMensaje").addEventListener("click", () => {
+      fetch("/mensaje")
+        .then(r => r.text())
+        .then(data => {
+          document.getElementById("respuesta").innerText = data;
+        })
+        .catch(err => {
+          document.getElementById("respuesta").innerText = "Error: " + err;
+        });
+    });
+  </script>
+</body>
+</html>
